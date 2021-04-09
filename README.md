@@ -1,1 +1,1 @@
-# Serverless-Node.Js-Pizerria
+Small chat app with Golang
