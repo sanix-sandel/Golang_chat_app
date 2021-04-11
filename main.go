@@ -28,7 +28,9 @@ func main() {
 	var addr = flag.String("addr", ":8000", "The addr of the application.")
 	flag.Parse() //parse the flags
 	r := newRoom()
-	http.Handle("/", &templateHandler{filename: "chat.html"})
+	//http.Handle("/", &templateHandler{filename: "chat.html"})
+	//authenticate first
+	http.Handle("/chat", MustAuth(&templateHandler{filename: "chat.html"}))
 	http.Handle("/room", r)
 	//get the room going
 	//go keyword allows our main goroutine to run the web server
