@@ -31,9 +31,12 @@ func main() {
 	//http.Handle("/", &templateHandler{filename: "chat.html"})
 	//authenticate first
 	http.Handle("/chat", MustAuth(&templateHandler{filename: "chat.html"}))
+	http.Handle("/login", &templateHandler{filename: "login.html"})
+	http.HandleFunc("/auth/", loginHandler)
 	http.Handle("/room", r)
 	//get the room going
 	//go keyword allows our main goroutine to run the web server
+
 	go r.run()
 	//start the web server
 	log.Println("Starting web server on", *addr)
